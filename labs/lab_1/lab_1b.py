@@ -40,15 +40,29 @@ def simple_calculator(operation: str, num1: float, num2: float) -> float:
 def main():
     
     print(f"===== Simple Calculator =====")
+    while True:
+        
+        # Ask the user for sample input
+        try:    
+            num1 = float(input("Enter the first number: "))
+            num2 = float(input("Enter the second number: "))
+        except ValueError:
+            print("Number Input Failed, Please Input Only Numbers")
+            continue
+            
 
-    # Ask the user for sample input    
-    num1 = float(input("Enter the first number: "))
-    num2 = float(input("Enter the second number: "))
-    operation = input("Enter the operation (add, subtract, multiply, divide): ").strip().lower()
+        operation = input("Enter the operation (add, subtract, multiply, divide): ").strip().lower()
 
-    # Perform the calculation and display the result
-    result = simple_calculator(operation, num1, num2)
-    print(f"The result of {operation}ing {num1} and {num2} is: {result}")
+        # Perform the calculation and display the result
+        try:
+            result = simple_calculator(operation, num1, num2)
+        except ValueError as error:
+            print (error)
+            print("Operation Failed, Please Input a Valid Operation")
+            continue
+
+        print(f"The result of {operation}ing {num1} and {num2} is: {result}")
+
 
 
 if __name__ == "__main__":
